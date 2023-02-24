@@ -30,23 +30,21 @@ scores = []
 for i in range(numberOfPlayers):
     scores.append(0)
 
-
 def play_lowest(player, prev_card):
     for card in player.cards:
         if card > prev_card:
             # remove card from player's hand
-            players[currentPlayer].cards.remove(card)
+            player.cards.remove(card)
             return card
-            # break
-    return prev_card
+    return []
 
 def play_highest(player, prev_card):
-    card = players[currentPlayer].cards[-1]
-    if card > prevCard:
+    card = player.cards[-1]
+    if card > prev_card:
         # remove card from player's hand
-        players[currentPlayer].cards.remove(card)
+        player.cards.remove(card)
         return card
-    return prev_card
+    return []
 
 for game in range(numberOfGames): ## Looping through the number of games
     
@@ -89,7 +87,7 @@ for game in range(numberOfGames): ## Looping through the number of games
             
         # strategy: play lowest card
         if (currentPlayer in [1,2,3]) and (players[currentPlayer].advance == 0):
-            currCard = play_lowest(players[currentPlayer], prevCard)
+            currCard = play_highest(players[currentPlayer], prevCard)
 
         if prevCard != currCard:
             prevCard = currCard
