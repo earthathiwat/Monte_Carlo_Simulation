@@ -90,11 +90,11 @@ for game in range(numberOfGames): ## Looping through the number of games
 
     # while there is still card in the players hand
     while all(len(player.cards) > 0 for player in players):
-        # strategy: play lowest card
+        # Your strategy
         if (currentPlayer in [0]) and (players[currentPlayer].advance == 0):
             currCard = play_lowest(players[currentPlayer], prevCard)
             
-        # strategy: play lowest card
+        # Opponent strategy
         if (currentPlayer in [1,2,3]) and (players[currentPlayer].advance == 0):
             currCard = play_highest(players[currentPlayer], prevCard)
 
