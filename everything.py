@@ -46,6 +46,15 @@ def play_highest(player, prev_card):
         return card
     return []
 
+def play_middle(player, prev_card):
+    p_cards = player.cards
+    card = p_cards[int(len(p_cards)/2)]
+    if card > prev_card:
+        # remove card from player's hand
+        player.cards.remove(card)
+        return card
+    return []
+
 for game in range(numberOfGames): ## Looping through the number of games
     
     # Generate deck
