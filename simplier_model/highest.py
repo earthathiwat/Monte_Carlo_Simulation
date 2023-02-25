@@ -23,7 +23,7 @@ class Player():
         self.advance = 0   
         
 numberOfPlayers = 4 # Number of Players
-numberOfGames = 100 # Number of Games
+numberOfGames = 10000 # Number of Games
 
 # generating array to keep track of how many times each player wins
 scores = []
@@ -65,19 +65,17 @@ for game in range(numberOfGames): ## Looping through the number of games
 
     # while there is still card in the players hand
     while all(len(player.cards) > 0 for player in players):
-        # strategy: play middle card
+        # strategy: play highest card
         if (currentPlayer in [0]) and (players[currentPlayer].advance == 0):
-            p_cards = players[currentPlayer].cards
-            card = p_cards[int(len(p_cards)/2)]
+            card = players[currentPlayer].cards[-1]
             if card > prevCard:
                 currCard = card
                 # remove card from player's hand
                 players[currentPlayer].cards.remove(card)
             
-        # strategy: play middle card
+        # strategy: play highest card
         if (currentPlayer in [1,2,3]) and (players[currentPlayer].advance == 0):
-            p_cards = players[currentPlayer].cards
-            card = p_cards[int(len(p_cards)/2)]
+            card = players[currentPlayer].cards[-1]
             if card > prevCard:
                 currCard = card
                 # remove card from player's hand

@@ -23,7 +23,7 @@ class Player():
         self.advance = 0   
         
 numberOfPlayers = 4 # Number of Players
-numberOfGames = 100 # Number of Games
+numberOfGames = 10000 # Number of Games
 
 # generating array to keep track of how many times each player wins
 scores = []

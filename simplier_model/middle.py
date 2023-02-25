@@ -9,7 +9,7 @@ class Deck():
     
     # Generating the cards in the deck
     def generate(self):
-        # ['spade','diamonds','hearts', 'clubs']
+        # ['clubs','diamonds','hearts', 'spades']
         for suit in range(4):
             for value in range(3,16):
                 self.cards.append([value, suit])
@@ -23,37 +23,12 @@ class Player():
         self.advance = 0   
         
 numberOfPlayers = 4 # Number of Players
-numberOfGames = 100 # Number of Games
+numberOfGames = 10000 # Number of Games
 
 # generating array to keep track of how many times each player wins
 scores = []
 for i in range(numberOfPlayers):
     scores.append(0)
-
-def play_lowest(player, prev_card):
-    for card in player.cards:
-        if card > prev_card:
-            # remove card from player's hand
-            player.cards.remove(card)
-            return card
-    return []
-
-def play_highest(player, prev_card):
-    card = player.cards[-1]
-    if card > prev_card:
-        # remove card from player's hand
-        player.cards.remove(card)
-        return card
-    return []
-
-def play_middle(player, prev_card):
-    p_cards = player.cards
-    card = p_cards[int(len(p_cards)/2)]
-    if card > prev_card:
-        # remove card from player's hand
-        player.cards.remove(card)
-        return card
-    return []
 
 for game in range(numberOfGames): ## Looping through the number of games
     
@@ -90,14 +65,24 @@ for game in range(numberOfGames): ## Looping through the number of games
 
     # while there is still card in the players hand
     while all(len(player.cards) > 0 for player in players):
-        # Your strategy
+        # strategy: play middle card
         if (currentPlayer in [0]) and (players[currentPlayer].advance == 0):
-            currCard = play_lowest(players[currentPlayer], prevCard)
+            p_cards = players[currentPlayer].cards
+            card = p_cards[int(len(p_cards)/2)]
+            if card > prevCard:
+                currCard = card
+                # remove card from player's hand
+                players[currentPlayer].cards.remove(card)
             
-        # Opponent strategy
+        # strategy: play middle card
         if (currentPlayer in [1,2,3]) and (players[currentPlayer].advance == 0):
-            currCard = play_highest(players[currentPlayer], prevCard)
-
+            p_cards = players[currentPlayer].cards
+            card = p_cards[int(len(p_cards)/2)]
+            if card > prevCard:
+                currCard = card
+                # remove card from player's hand
+                players[currentPlayer].cards.remove(card)
+        
         if prevCard != currCard:
             prevCard = currCard
         else:
